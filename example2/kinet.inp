@@ -1,0 +1,55 @@
+#
+# AR PLASMA WITH DIFFUSION AND EXTERNAL CIRCUIT
+# INPUT DATA FILE
+# ZDPLASKIN
+#
+# This test case corresponds to an Ar plasma consisting of
+# electrons, atomic and molecular ions, and neutrals.
+#
+
+ELEMENTS
+e Ar
+END
+
+SPECIES
+# gas-phase species
+e Ar Ar* Ar^+ Ar2^+
+# surface-absorbed species
+Ar(W)^+ Ar2(W)^+ e(W)
+END
+
+BOLSIG
+Ar Ar*
+END
+
+REACTIONS
+#
+# a piece of Fortran code
+#
+$ use options, only : gas_pressure, radius, gap_length
+$ double precision :: diff_rate
+$ diff_rate = 1.52d0 * ( 760.d0 / gas_pressure) * ( Tgas / 273.16d0 ) * ( Te / 11600.d0 ) &
+$                    * ( (2.405d0/radius)**2 + (3.141d0/gap_length)**2 )
+
+#
+# reactions in volume
+#
+e + Ar => e + e + Ar^+         !   Bolsig+ Ar  -> Ar^+
+e + Ar => Ar* + e              !   Bolsig+ Ar  -> Ar*
+Ar* + e => Ar + e              !   Bolsig+ Ar* -> Ar
+e + Ar* => Ar^+ + e + e        !   Bolsig+ Ar* -> Ar^+
+Ar2^+ + e => Ar* + Ar          !   8.5d-7 * (Te/300.0d0)**(-0.67d0)
+Ar2^+ + Ar => Ar^+ + Ar + Ar   !   6.06d-6 / Tgas * exp(-15130.0d0/Tgas)
+Ar* + Ar* => Ar2^+ + e         !   6.0d-10
+Ar^+ + e + e => Ar  + e        !   8.75d-27 * (Te/11600.0d0)**(-4.5d0)
+Ar* + Ar + Ar  => Ar + Ar + Ar !   1.4d-32
+Ar^+ + Ar + Ar  => Ar2^+ + Ar  !   2.25d-31 * (Tgas/300.0d0)**(-0.4d0)
+
+#
+# ambipolar diffusion losses; here we neglect by surface de-absorption processes
+#
+Ar^+ => Ar(W)^+                !   diff_rate
+Ar2^+ => Ar2(W)^+              !   diff_rate
+e => e(W)                      !   diff_rate
+
+END
