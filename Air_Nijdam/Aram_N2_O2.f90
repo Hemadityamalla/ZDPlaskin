@@ -53,7 +53,7 @@ program Aram_N2_O2
   min_field = 1.0d3 * min_field_stp * pressure / density_0 / 1.0d-17
   reduced_field = max_field
 
-  call ZDPlasKin_set_config(QTPLASKIN_SAVE=.true.)
+  !call ZDPlasKin_set_config(QTPLASKIN_SAVE=.true.)
   call ZDPlasKin_set_conditions(GAS_TEMPERATURE=gas_temperature,REDUCED_FIELD=external_field )
 
   N2_density = (1.0d2 - oxygen_procent) * density_0 /1.0d2
