@@ -47,7 +47,7 @@ program test_2reac
   write(*,'(4(1pe12.4))') time, density(:)
 !
 ! time integration
-!
+! Hema- I can modify it so that the output is actually written out to a file
   do while(time .lt. time_end)
     call ZDPlasKin_timestep(time,dtime)
     time = time + dtime
