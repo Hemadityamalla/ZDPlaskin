@@ -21,6 +21,7 @@ program test_2reac
                                  density_ini_elec = 1.0d0      ! initial electron density, cm-3
   double precision            :: time  = 0.0d0, time_end = 2.5d-7, dtime = 1.0d-8 ! times, s
   integer                     :: i
+!  double precision, allocatable(:,:) :: 
 !
 ! print
 !
@@ -40,7 +41,6 @@ program test_2reac
   call ZDPlasKin_set_density(  'Ar',density_ini_ar)
   call ZDPlasKin_set_density(   'e',density_ini_elec)
   call ZDPlasKin_set_density('Ar^+',density_ini_elec)
-!
 ! print column headers and initial values
 !
   write(*,'(4(A12))') 'Time_s', ( trim(species_name(i)), i = 1, species_max )
@@ -51,11 +51,12 @@ program test_2reac
   do while(time .lt. time_end)
     call ZDPlasKin_timestep(time,dtime)
     time = time + dtime
+    call ZDPlaskin_write_qtplaskin(time)
     write(*,'(4(1pe12.4))') time, density(:)
   enddo
 !
 ! end
-!
-  write(*,'(/,A,$)') 'PRESS ENTER TO EXIT ...'
-  read(*,*)
+!The below line were commented by Hema as they were just stupid to ask for user input!
+  !write(*,'(/,A,$)') 'PRESS ENTER TO EXIT ...'
+  !read(*,*)
 end program test_2reac

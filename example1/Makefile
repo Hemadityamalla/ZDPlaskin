@@ -1,20 +1,32 @@
 FC:=gfortran
 RM:=rm -f
-OBJFILES:=*.o
+OBJFILES:= dvode_f90_m.o zdplaskin_m.o main.o
 
-LINKLIB:=bolsig_x86_64.so
+LINKLIB:= bolsig_x86_64.so
 
-PROG:=example1
-OUTPUT:=out.txt
+PROG:= example1
+OUTPUT:= qt*.txt
 
 .PHONY: all clean run
 
+
 all: $(PROG)
 
+run: $(PROG)
+	./$(PROG)
+
 clean: 
-	$(RM) $(OBJFILES) *.mod $(PROG) $(OUTPUT)
+	$(RM) $(OBJFILES) *.mod $(PROG) $(OUTPUT) *.log
 
 %.o: %.F90
-	$(FC) -c $@ $^
+	$(FC) -c $^
 
-$(PROG): 
+$(PROG): $(OBJFILES) $(LINKLIB)
+	$(FC) -o $@ $^
+
+
+zdplaskin_m.F90: kinetics.inp preprocessor
+	./preprocessor kintetics.inp $@
+	
+
+
