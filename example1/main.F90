@@ -20,8 +20,8 @@ program test_2reac
                                  density_ini_ar   = 2.5d19,  & ! initial Ar density, cm-3
                                  density_ini_elec = 1.0d0      ! initial electron density, cm-3
   double precision            :: time  = 0.0d0, time_end = 2.5d-7, dtime = 1.0d-8 ! times, s
-  integer                     :: i
-!  double precision, allocatable(:,:) :: 
+  integer                     :: i, t_iter, Nsteps, ifile_unit
+  double precision, allocatable, dimension(:,:) :: outputData
 !
 ! print
 !
@@ -30,7 +30,9 @@ program test_2reac
 ! initialization of ZDPlasKin
 !
   call ZDPlasKin_init()
-!
+
+  Nsteps = int((time_end - time)/dtime)
+  allocate(outputData(species_max+1, Nsteps))
 ! set the physical conditions of the calculation:
 !     the gas temperature and the reduced electric field
 !
@@ -48,15 +50,27 @@ program test_2reac
 !
 ! time integration
 ! Hema- I can modify it so that the output is actually written out to a file
+  t_iter = 0
   do while(time .lt. time_end)
     call ZDPlasKin_timestep(time,dtime)
     time = time + dtime
     call ZDPlaskin_write_qtplaskin(time)
     write(*,'(4(1pe12.4))') time, density(:)
-  enddo
-!
+    t_iter = t_iter+1
+    outputData(1,t_iter) = time
+    outputData(2:, t_iter) = density(:)
+    enddo
+
+  open(ifile_unit, file='outputData.txt', action='write')
+  write(ifile_unit,'(4(A12))') 'Time_s', ( trim(species_name(i)), i = 1, species_max ) 
+  do i=1,Nsteps
+        write(ifile_unit, '(4(1pe12.4))') outputData(:, i)
+  end do
+  close(ifile_unit)
+
 ! end
 !The below line were commented by Hema as they were just stupid to ask for user input!
   !write(*,'(/,A,$)') 'PRESS ENTER TO EXIT ...'
   !read(*,*)
+
 end program test_2reac
