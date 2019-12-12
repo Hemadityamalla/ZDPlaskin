@@ -280,13 +280,13 @@ O2(v3) + O  => O2(v4) + O                          !   kVT01_O2O * 4.0d0
 #
 #--------------------------------------------------------------------------------
 
-e + N2 => e + N2(A3)                               !   BOLSIG N2 -> N2(A3,v0-4)
+#e + N2 => e + N2(A3)                               !   BOLSIG N2 -> N2(A3,v0-4)
 e + N2 => e + N2(A3)                               !   BOLSIG N2 -> N2(A3,v5-9)
 e + N2 => e + N2(A3)                               !   BOLSIG N2 -> N2(A3,v10-)
 e + N2 => e + N2(B3)                               !   BOLSIG N2 -> N2(B3)
 e + N2 => e + N2(B3)                               !   BOLSIG N2 -> N2(W3)
-e + N2 => e + N2(B3)                               !   BOLSIG N2 -> N2(B-3)
-e + N2 => e + N2(a`1)                              !   BOLSIG N2 -> N2(a-1)
+e + N2 => e + N2(B3)                               !   BOLSIG N2 -> N2(B3)
+e + N2 => e + N2(a`1)                              !   BOLSIG N2 -> N2(a'1)
 e + N2 => e + N2(a`1)                              !   BOLSIG N2 -> N2(a1)
 e + N2 => e + N2(a`1)                              !   BOLSIG N2 -> N2(w1)
 e + N2 => e + N2(C3)                               !   BOLSIG N2 -> N2(C3)
@@ -307,7 +307,7 @@ e + O2 => e + O + O(1D)                            !   BOLSIG O2 -> O2(8.4eV)
 e + O2 => e + O + O(1S)                            !   BOLSIG O2 -> O2(9.97eV)
 e + O2 => e + e + O2^+                             !   BOLSIG O2 -> O2^+
 e + O2 => O^- + O                                  !   BOLSIG O2 -> O^- + O
-e + O2 + O2 => O2^- + O2                           !   BOLSIG O2 + O2 -> O2^- + O2
+#e + O2 + O2 => O2^- + O2                           !   BOLSIG O2 + O2 -> O2^- + O2
 
 e + O2(a1) => e + O2                               !   BOLSIG O2(a1) -> O2
 e + O2(a1) => e + O + O                            !   BOLSIG O2(a1) -> O + O

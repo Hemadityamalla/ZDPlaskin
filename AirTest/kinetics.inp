@@ -136,8 +136,8 @@ e + N2 => e + @B                                   !   BOLSIG N2 -> @R
     @B = N2(v1)    N2(v1) N2(v2) N2(v3) N2(v4) N2(v5) N2(v6) N2(v7) N2(v8)
     @R = N2(v1res) N2(v1) N2(v2) N2(v3) N2(v4) N2(v5) N2(v6) N2(v7) N2(v8)
 
-#e + @A => e + N2                                   !   BOLSIG @A -> N2
-#    @A = N2(v1) N2(v2) N2(v3) N2(v4) N2(v5) N2(v6) N2(v7) N2(v8)
+e + @A => e + N2                                   !   BOLSIG @A -> N2
+    @A = N2(v1) N2(v2) N2(v3) N2(v4) N2(v5) N2(v6) N2(v7) N2(v8)
 
 e + O2 => e + @B                                   !   BOLSIG O2 -> @R
     @B = O2(v1)    O2(v1) O2(v2)    O2(v2) O2(v3) O2(v4)
@@ -254,7 +254,7 @@ e + N2 => e + N2(a`1)                              !   BOLSIG N2 -> @R
 e + N2 => e + N2(C3)                               !   BOLSIG N2 -> @R
     @R = N2(C3)  N2(E3)  N2(a''1)
 
-#e + N2 => e + N + N(2D)                            !   BOLSIG N2 -> N2(SUM)
+e + N2 => e + N + N(2D)                            !   BOLSIG N2 -> N2(SUM)
 
 e + O2 => e + @B                                   !   BOLSIG O2 -> @R
     @B = O2(a1)  O2(b1)  O2(4.5eV)
@@ -264,7 +264,7 @@ e + O2 => e + O + @B                               !   BOLSIG O2 -> @R
     @B = O          O(1D)      O(1S)
     @R = O2(6.0eV)  O2(8.4eV)  O2(9.97eV)
 
-#e + O2(a1) => e + O + O                            !   BOLSIG O2(a1) -> O + O
+e + O2(a1) => e + O + O                            !   BOLSIG O2(a1) -> O + O
 
 e + O => e + O(1D)                                 !   BOLSIG O -> O(1D)
 
@@ -276,7 +276,7 @@ e + O => e + O(1S)                                 !   BOLSIG O -> O(1S)
 #
 #--------------------------------------------------------------------------------
 
-#e + N2(A3) => e + N2                               !   BOLSIG N2(A3) -> N2
+e + N2(A3) => e + N2                               !   BOLSIG N2(A3) -> N2
 
 e + O2(a1) => e + O2                               !   BOLSIG O2(a1) -> O2
 

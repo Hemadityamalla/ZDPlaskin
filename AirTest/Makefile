@@ -17,7 +17,7 @@ run: $(PROG)
 	./$(PROG)
 
 clean: 
-	$(RM) $(OBJFILES) *.mod $(PROG) $(OUTPUT) *.log
+	$(RM) $(OBJFILES) *.mod *.log $(PROG) $(OUTPUT)
 
 %.o: %.F90
 	$(FC) $(FFLAGS) -c $^
@@ -28,8 +28,8 @@ $(PROG): $(OBJFILES) $(LINKLIB)
 
 #We do not use the below commands as we do not (yet) have the .inp file for air mechanisms-- work for later
 
-zdplaskin_m.F90: kinetics.inp preprocessor
-	./preprocessor kintetics.inp $@
+#zdplaskin_m.F90: kinetics.inp preprocessor
+#	./preprocessor kinetics.inp $@
 	
 
 
