@@ -26,7 +26,7 @@ $(PROG): $(OBJFILES) $(LINKLIB)
 
 
 zdplaskin_m.F90: kinetics.inp preprocessor
-	./preprocessor kinetics.inp $@
+	./preprocessor kintetics.inp $@
 	
 
 

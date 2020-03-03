@@ -4,7 +4,7 @@ OBJFILES:= dvode_f90_m.o zdplaskin_m.o main.o
 
 LINKLIB:= bolsig_x86_64.so
 
-PROG:= example1
+PROG:= SimpleAir
 OUTPUT:= qt*.txt
 
 .PHONY: all clean run
