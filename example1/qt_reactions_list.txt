@@ -1,2 +1,0 @@
-1 bolsig:AR->AR^+ 
-2 E+AR^++AR=>AR+AR

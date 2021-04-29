@@ -1,5 +1,0 @@
-CHANGES in 2.0a
-
-- Fixed GetEEDF routine.
-- Fixed interface definition in ZDPlasKin module.
-- Increased number of digits when saved in Qtplaskin format.

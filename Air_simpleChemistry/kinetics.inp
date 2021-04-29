@@ -1,0 +1,42 @@
+ELEMENTS
+e N O
+END
+
+
+SPECIES
+e N2 O2 O4^+ O2^+ N2^+ N4^+ O2^+N2 O O2^-
+END
+
+BOLSIG
+N2 O2
+END
+
+
+REACTIONS
+# Ionization
+e + N2 => e + e + N2^+ ! BOLSIG N2 -> N2^+
+e + O2 => e + e + O2^+ ! BOLSIG O2 -> O2^+
+# Attachment
+e + O2 + O2 => O2^- + O2 ! 2.0d-29*(300./Te)**0.5d0
+#e + O2 => O^- + O ! BOLSIG O2 -> O^-
+#Ion-conversion -- O2^+ production with N2^+
+N2^+ + N2 + @M => N4^+ + @M ! 5.0d-29
+@M = O2 N2
+N4^+ + O2 => O2^+ + N2 + N2 ! 2.5d-10
+N2^+ + O2 => O2^+ + N2 	    ! 6.0d-11
+#Ion-conversion -- O4^+ production with O2^+
+O2^+ + N2 + N2 => O2^+N2 + N2 ! 9.0d-31
+O2^+N2 + N2 => O2^+ + N2 + N2 ! 4.3d-10
+O2^+N2 + O2 => O4^+ + N2 ! 1.0d-9
+O2^+ + O2 + @M => O4^+ + @M ! 2.4d-30
+@M = O2 N2
+#Dissociative Recombination
+e + O4^+ => O2 + O2 ! 1.4d-6*(300./Te)**0.5d0
+e + O2^+ => O + O ! 2.0d-7*(300./Te)**0.5d0
+#Ion-Ion Recombination
+O2^- + O4^+ => O2 + O2 + O2 ! 1.0d-7
+O2^- + O4^+ + @M => O2 + O2 + O2 + @M! 2.0d-25
+@M = O2 N2
+O2^- + O2^+ + @M => O2 + O2 + @M! 2.0d-25
+@M = O2 N2
+END
