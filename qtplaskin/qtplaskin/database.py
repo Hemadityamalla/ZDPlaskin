@@ -36,6 +36,8 @@ _molar_mass_dict = {
         'N':14.0067,
         'O':15.9994,
         'Ar':39.948,
+        'S':32.0,
+        'F':19.0,
         'X':0,   # virtual species
         }
 ''' molar mass in g/mol '''

@@ -1,0 +1,98 @@
+ELEMENTS
+e N O S F
+END
+
+
+SPECIES
+e N2 O2 N2^+ O2^+ O2^- O^- O 
+N2O O3^- N4^+ O4^+ N O3
+N2(C) N2(B)
+SF6 SF5^+ F F2^- SF4
+F^- SF5 SF2^- F4
+SF3^- F3 SF4^- F2
+SF5^- SF6^-
+END
+
+BOLSIG
+N2 O2 SF6
+END
+
+
+REACTIONS
+# Ionization
+e + N2 => e + e + N2^+ ! BOLSIG N2 -> N2^+ 
+e + N2 => e + e + N2^+ ! BOLSIG N2 -> N2^+(B2SIGMA)
+e + O2 => e + e + O2^+ ! BOLSIG O2 -> O2^+
+# Attachment
+e + O2 + O2 => O2^- + O2 ! BOLSIG O2 -> O2^-
+e + O2 => O^- + O ! BOLSIG O2 -> O^-+O
+# Detachment (Panchesnyi 2013)
+O2^- + @M => e + O2 + @M ! 1.24e-11*exp(-(179.0/(8.8+EN))**2)
+@M = O2 N2
+N2 + O^- => e + N2O ! 1.16e-12*exp(-(48.9/(11.0+EN))**2)
+# Negative ion conversion (Panchesnyi 2013)
+O2 + O^- => O2^- + O ! 6.96e-11*exp(-(198.0/(5.6+EN))**2)
+O2 + O^- + @M => O3^- + @M ! 1.1e-33*exp(-(EN/65.0)**2)
+@M = O2 N2
+# Positive ion conversion (Aleksandrov and Bazelyan 1999)
+# These rates depends on the temperature. For T=300K:
+N2^+ + N2 + @M => N4^+ + @M ! 5.0d-29
+@M = O2 N2
+N4^+ + O2 => N2 + N2 + O2^+ ! 2.5d-10
+O2^+ + O2 + @M => O4^+ + @M ! 2.4d-30
+@M = O2 N2
+# Electron recombination (Kossyi et. al. 1992 cites Smirnov 1983 [in Russian])
+e + O4^+ => O2 + O2 ! 1.4d-6*(300./Te)**0.5d0
+#e + N2^+ => N + N ! BOLSIG #------
+#e + N2^+ => N + N ! BOLSIG #------
+# Generation of N2(C3)
+e + N2 => e + N2(C) ! BOLSIG N2 -> N2(C3)
+# Quenching by N2 and O2 collisions (rates from Panchesnyi PR-E 2005)
+N2(C) + N2 => N2 + N2 ! 0.13d-10
+N2(C) + O2 => N2 + O2 ! 3.0d-10
+# Radiative lifetime is 42 ns
+N2(C) => N2(B) ! 2.381d13
+# Recombination (Kossyi et. al. 1992)
+N2^+ + O^- => N + N + O ! 1d-7
+N2^+ + O3^- => N + N + O3 ! 1d-7
+N2^+ + O2^- => N + N + O2 ! 1d-7
+O2^+ + O^- => O + O + O ! 1d-7
+O2^+ + O3^- => O + O + O3 ! 1d-7
+O2^+ + O2^- => O + O + O2 ! 1d-7
+O4^+ + O^- => O2 + O2 + O ! 1d-7
+O4^+ + O2^- => O2 + O2 + O2 ! 1d-7
+O4^+ + O3^- => O2 + O2 + O3 ! 1d-7
+N4^+ + O^- => N2 + N2 + O ! 1d-7
+N4^+ + O2^- => N2 + N2 + O2 ! 1d-7
+N4^+ + O3^- => N2 + N2 + O3 ! 1d-7
+##Ion-conversion -- O2^+ production with N2^+
+#N2^+ + N2 + @M => N4^+ + @M ! 5.0d-29
+#@M = O2 N2
+#N4^+ + O2 => O2^+ + N2 + N2 ! 2.5d-10
+#N2^+ + O2 => O2^+ + N2 	    ! 6.0d-11
+##Ion-conversion -- O4^+ production with O2^+
+#O2^+ + N2 + N2 => O2^+N2 + N2 ! 9.0d-31
+#O2^+N2 + N2 => O2^+ + N2 + N2 ! 4.3d-10
+#O2^+N2 + O2 => O4^+ + N2 ! 1.0d-9
+#O2^+ + O2 + @M => O4^+ + @M ! 2.4d-30
+#@M = O2 N2
+##Dissociative Recombination
+#e + O4^+ => O2 + O2 ! 1.4d-6*(300./Te)**0.5d0
+#e + O2^+ => O + O ! 2.0d-7*(300./Te)**0.5d0
+##Ion-Ion Recombination
+#O2^- + O4^+ => O2 + O2 + O2 ! 1.0d-7
+#O2^- + O4^+ + @M => O2 + O2 + O2 + @M! 2.0d-25
+#@M = O2 N2
+#O2^- + O2^+ + @M => O2 + O2 + @M! 2.0d-25
+#@M = O2 N2
+# SF6
+e + SF6 => e + e + SF5^+ + F ! BOLSIG SF6 -> SF5^+ + F
+e + SF6 => F2^- + SF4 ! BOLSIG SF6 -> F2^- + SF4
+e + SF6 => F^- + SF5 ! BOLSIG SF6 -> F^- + SF5
+e + SF6 => SF2^- + F4 ! BOLSIG SF6 -> SF2^- + F4
+e + SF6 => SF3^- + F3 ! BOLSIG SF6 -> SF3^- + F3
+e + SF6 => SF4^- + F2 ! BOLSIG SF6 -> SF4^- + F2
+e + SF6 => SF5^- + F ! BOLSIG SF6 -> SF5^- + F
+e + SF6 => SF6^- ! BOLSIG SF6 -> SF6^-
+e + SF6 => SF5 + F + e ! BOLSIG SF6 -> SF5 + F
+END
