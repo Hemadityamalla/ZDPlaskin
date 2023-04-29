@@ -22,5 +22,6 @@ END
 
 REACTIONS
 e + Ar => e + e + Ar^+   ! Bolsig Ar->Ar^+
+#e + Ar => e + e + Ar^+   ! 6.683d-12
 e + Ar^+ + Ar => Ar + Ar ! 1.0d-25
 END

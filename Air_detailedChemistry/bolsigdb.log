@@ -1,0 +1,35 @@
+# List of loaded electron processes to BOLSIG+ solver.
+# Can be used as references for reaction rates in input kinetics.
+N2->N2(A3SU)
+N2->N2(B'3SU-)
+N2->N2(B3PG)
+N2->N2(C3PU)
+N2->N2(E3SG)
+N2->N2(W3DU)
+N2->N2(A1SG)
+N2->N2(A'1SU-)
+N2->N2(A1PG)
+N2->N2(R2)
+N2->N2(V1)
+N2->N2(W1DU)
+C13_N2_Elastic
+N2->N
+N2->N2^+
+N2->N^+
+N2->N^++
+O2->O^-
+O2->O2(2B)
+O2->O2(A3SU)
+O2->O2(B3SU)
+O2->O2(LB)
+O2->O2(A1DG)
+O2->O2(B1SG)
+O2->O2(V1)
+O2->O2(V2)
+O2->O2(V3)
+C28_O2_Elastic
+O2->O
+O2->O2^+
+O2->O^+
+O2->O^++
+O2->O2^-

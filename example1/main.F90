@@ -17,11 +17,12 @@ program main
   implicit none
   double precision, parameter :: gas_temperature  = 300.0d0, & ! gas temperature, K
                                  reduced_field    = 50.0d0,  & ! reduced electric field, Td
-                                 density_ini_ar   = 2.5d19,  & ! initial Ar density, cm-3
+                                 density_ini_ar   = 2.414d19,  & ! initial Ar density, cm-3
                                  density_ini_elec = 1.0d0      ! initial electron density, cm-3
-  double precision            :: time  = 0.0d0, time_end = 2.5d-7, dtime = 1.0d-8 ! times, s
+  double precision            :: time  = 0.0d0, time_end = 2.2d-7, dtime = 1.0d-9 ! times, s
   integer                     :: i, t_iter, Nsteps, ifile_unit
   double precision, allocatable, dimension(:,:) :: outputData
+  double precision :: rates(1:reactions_max)
 !
 ! print
 !
@@ -53,7 +54,11 @@ program main
     call ZDPlasKin_timestep(time,dtime)
     time = time + dtime
     call ZDPlaskin_write_qtplaskin(time)
-    write(*,'(4(1pe12.4))') time, density(:)
+    !write(*,'(4(1pe12.4))') time, density(:)
+    call ZDPlasKin_get_rates(reaction_rates=rates(1:reactions_max))
+
+    !write(*,'(3(1pe12.4))') time, rates(1)/(density(1)*density_ini_ar), rates(2)/(density(1)*density(3)*density(2))
+    write(*,'(3(1pe12.4))') time, rates(1)/density(1), rates(2)/(density(1)*density(3))
     t_iter = t_iter+1
     enddo
 

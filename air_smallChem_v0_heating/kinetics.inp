@@ -1,0 +1,39 @@
+#
+# AIR SMALL CHEMISTRY
+# INPUT DATA FILE
+# ZDPLASKIN
+#
+#
+
+ELEMENTS
+e O N
+END
+
+SPECIES
+e N2 O2 O2^+ O2^- O^- N2O O
+N2(B)^+
+N2(A)^+
+END
+
+BOLSIG #This is an optional section
+N2
+O2
+set accuracy 1.5d0
+#set max points 10
+END
+
+REACTIONS
+e + N2 => e + e + N2(A)^+ ! Bolsig N2->N2(A)^+
+e + N2 => e + e + N2(B)^+ ! Bolsig N2->N2(B)^+
+e + O2 => e + e + O2^+ ! Bolsig O2->O2^+
+e + O2 + O2 => O2^- + O2! Bolsig O2->O2^-
+e + O2 => O^-  + O! Bolsig O2->O^-
+$double precision :: detachment_rate1
+$detachment_rate1 = 1.24d-11*exp(-(179.0d0/(8.8d0 + EN))**2)
+O2^- + @M => e + O2 + @M ! detachment_rate1
+@M=N2 O2
+$double precision :: detachment_rate2
+$detachment_rate2 = 1.16d-12*exp(-(48.9d0/(11.0d0 + EN))**2)
+O^- + N2 => e + N2O! detachment_rate2
+END
+

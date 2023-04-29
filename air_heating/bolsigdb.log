@@ -1,0 +1,9 @@
+# List of loaded electron processes to BOLSIG+ solver.
+# Can be used as references for reaction rates in input kinetics.
+C1_N2_Effective_(momentum)
+N2->N2^+
+N2->N2^+(B2SIGMA)
+O2->O2^-
+O2->O^-
+C6_O2_Effective_(momentum)
+O2->O2^+
